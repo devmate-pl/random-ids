@@ -67,6 +67,7 @@
 <script>
 import GeneratorTemplate from '@/components/generators/GeneratorTemplate.vue'
 import nrbService from '@/services/generators/nrb.js'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'NRB',
@@ -109,7 +110,15 @@ export default {
     ]
   }),
 
+  created () {
+    const loadedConfig = this.$store.getters.getGeneratorSettings(this.$options.name)
+    if (loadedConfig) {
+      this.currentSettings = loadedConfig
+    }
+  },
+
   methods: {
+    ...mapActions(['updateGeneratorConfiguration']),
     nextValue () {
       if (this.currentSettings.showCountryCode === 'true') {
         return this.currentSettings.countryCode + nrbService.nrb(this.currentSettings.countryCode, this.currentSettings.bankId)
@@ -128,6 +137,8 @@ export default {
       this.currentSettings.countryCode = this.editedSettings.countryCode
       this.currentSettings.bankId = this.editedSettings.bankId
       this.dialog = false
+
+      this.updateGeneratorConfiguration({ name: this.$options.name, config: this.currentSettings })
     }
   }
 }
