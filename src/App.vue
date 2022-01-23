@@ -4,7 +4,7 @@
       <div class="d-flex align-center">
         <v-img
           alt="Logo"
-          title="Generator danych testowych"
+          title="Generator PESEL, dowód osobisty"
           class="shrink mr-2"
           contain
           src="logo.png"
@@ -13,7 +13,7 @@
         />
       </div>
       <v-toolbar-title class="ml-10 hidden-sm-and-down">
-        <h1>Generator danych testowych</h1>
+        <h1>Generator PESEL, nr dowodu osobistego, ...</h1>
       </v-toolbar-title>
 
       <v-col style="text-align: end">
