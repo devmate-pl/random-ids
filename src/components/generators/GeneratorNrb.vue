@@ -11,6 +11,10 @@
           Ustawienia
         </v-btn>
       </template>
+
+      <template v-slot:currentSettings>
+        {{ currentBankName }} ({{ currentSettings.bankId }})
+      </template>
     </GeneratorTemplate>
     <!-- settings dialog -->
     <v-dialog
@@ -109,6 +113,16 @@ export default {
       { text: 'T-mobile Usługi Bankowe', value: 24901044 }
     ]
   }),
+
+  computed: {
+    currentBankName () {
+      const bank = this.banks.find(bank => bank.value === this.currentSettings.bankId)
+      if (bank) {
+        return bank.text
+      }
+      return ''
+    }
+  },
 
   created () {
     const loadedConfig = this.$store.getters.getGeneratorSettings(this.$options.name)

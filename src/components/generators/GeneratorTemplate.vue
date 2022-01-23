@@ -19,7 +19,7 @@
                   Generuj
                 </v-btn>
               </v-col>
-              <v-col cols="12" sm="5" style="text-align: end;">
+              <v-col cols="12" sm="7" style="text-align: end;" class="text--secondary body-2">
                 <slot name="currentSettings" />
               </v-col>
             </v-row>
