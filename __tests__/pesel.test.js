@@ -9,6 +9,7 @@ describe('Pesel', () => {
   })
 
   it('should generate number based on age', () => {
+    MockDate.set(new Date('2020-07-05T10:00:00.000Z'))
     const generatedPesel = pesel.pesel(null, 21, 'any')
     expect(Number.parseInt(generatedPesel)).toBeGreaterThan(99000000000)
     expect(Number.parseInt(generatedPesel)).toBeLessThan(100000000000)

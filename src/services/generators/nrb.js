@@ -1,7 +1,8 @@
 import utils from '../utils.js'
 
 export default {
-  nrb
+  nrb,
+  calculateProperControlNumber
 }
 
 function nrb (countryCode, bankId) {
@@ -18,9 +19,9 @@ function calculateProperControlNumber (countryCode, bankId, randomlyGeneratedPar
   const mod = modulo(numberTranslated, 97)
   if (mod !== 1) {
     if ((98 - mod) < 10) {
-      return '' + 0 + 98 - mod
+      return '0' + (98 - mod)
     } else {
-      return 98 - mod
+      return '' + (98 - mod)
     }
   }
   return baseControlNumber
