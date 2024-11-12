@@ -19,31 +19,31 @@ export default {
   name: 'DO',
   placeholder: 'dowod',
 
-  components: {
-    GeneratorTemplate
+components: {
+  GeneratorTemplate
+},
+
+data: () => ({
+  seria: '',
+  numer: ''
+}),
+
+methods: {
+  nextValue () {
+    const result = doService.dowod()
+    this.seria = result.seria
+    this.numer = result.numer
+
+    return result.seriaNumer
   },
-
-  data: () => ({
-    seria: '',
-    numer: ''
-  }),
-
-  methods: {
-    nextValue () {
-      const result = doService.dowod()
-      this.seria = result.seria
-      this.numer = result.numer
-
-      return result.seriaNumer
-    },
-    substituteValue (text) {
-      var result = utils.replaceAll(text, this.$options.placeholder, this.$refs.commonTemplate.currentValue())
-      // dodatkowe placeholdery
-      result = utils.replaceAll(result, 'dowodSeria', this.seria)
-      result = utils.replaceAll(result, 'dowodNumer', this.numer)
-      return result
-    }
+  substituteValue (text) {
+    var result = utils.replaceAll(text, this.$options.placeholder, this.$refs.commonTemplate.currentValue())
+    // dodatkowe placeholdery
+    result = utils.replaceAll(result, 'dowodSeria', this.seria)
+    result = utils.replaceAll(result, 'dowodNumer', this.numer)
+    return result
   }
+}
 
 }
 </script>

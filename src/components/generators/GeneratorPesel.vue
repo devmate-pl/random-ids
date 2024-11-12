@@ -63,27 +63,15 @@
               </v-col>
 
               <v-col cols="8" lg="6">
-                <v-menu
-                  ref="birthdayDatePickerVisible"
-                  v-model="birthdayDatePickerVisible"
-                  :close-on-content-click="false"
-                  transition="scale-transition"
-                  offset-y
-                  max-width="290px"
-                  min-width="290px"
+                <v-text-field
+                  type="date"
+                  :rules=" [birthDateRules] "
+                  v-model="editSettings.birthDate"
+                  label="Data urodzenia"
                 >
-                  <template v-slot:activator="{ on }">
-                    <v-text-field
-                      v-model="editSettings.birthDate"
-                      label="Data urodzenia"
-                      hint="YYYY-MM-DD"
-                      persistent-hint
-                      :rules=" [birthDateRules] "
-                      v-on="on"
-                    />
-                  </template>
-                  <v-date-picker v-model="editSettings.birthDate" no-title @input="birthdayDatePickerVisible = false" />
-                </v-menu>
+
+                </v-text-field>
+
               </v-col>
             </v-row>
           </v-form>
@@ -91,7 +79,7 @@
 
         <v-card-actions>
           <v-spacer />
-          <v-btn color="green darken-1" text :disabled="!valid" @click="saveOptions">
+          <v-btn color="green darken-1" :disabled="!valid" @click="saveOptions">
             Ustaw
           </v-btn>
         </v-card-actions>

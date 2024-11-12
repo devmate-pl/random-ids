@@ -25,7 +25,7 @@ const defaultConfig = {
 }
 
 export default {
-  get () {
+  get() {
     return defaultConfig
   }
 }

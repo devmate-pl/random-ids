@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import App from './App.vue'
-import vuetify from './plugins/vuetify'
+import { registerPlugins } from '@/plugins'
 import store from '@/store/store'
+import App from './App.vue'
+import { createApp } from 'vue'
 
-Vue.config.productionTip = false
+const app = createApp(App)
 
-new Vue({
-  vuetify,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+registerPlugins(app)
+
+app.use(store)
+
+app.mount('#app')

@@ -1,18 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import {createStore} from 'vuex'
 
 import defaultConfiguration from './default-config.js'
 import storageService from './storage-service.js'
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  state: {
-    configuration: {}
+export default createStore({
+  state() {
+    return {
+      configuration: {}
+    }
   },
 
   getters: {
-    getAllTemplates (state) {
+    getAllTemplates(state) {
       return state.configuration.templates
     },
 
@@ -23,7 +22,7 @@ export default new Vuex.Store({
 
   actions: {
     // methods, external calls, update state using mutations
-    loadConfiguration (context) {
+    loadConfiguration(context) {
       const loadedConfig = storageService.loadConfig()
       if (loadedConfig) {
         context.commit('setConfig', loadedConfig)
@@ -33,11 +32,11 @@ export default new Vuex.Store({
         context.commit('setConfig', loadedConfig)
       }
     },
-    updateGeneratorConfiguration (context, dataObject) {
+    updateGeneratorConfiguration(context, dataObject) {
       context.commit('setGeneratorConfiguration', dataObject)
       storageService.saveConfig(context.state.configuration)
     },
-    updateTemplateConfiguration (context, dataObject) {
+    updateTemplateConfiguration(context, dataObject) {
       context.commit('setTemplateConfiguration', dataObject)
       storageService.saveConfig(context.state.configuration)
     }
@@ -45,14 +44,16 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    setGeneratorConfiguration (state, dataObject) {
+    setGeneratorConfiguration(state, dataObject) {
       state.configuration.generators[dataObject.name] = dataObject.config
     },
-    setTemplateConfiguration (state, dataObject) {
+    setTemplateConfiguration(state, dataObject) {
       state.configuration.templates[dataObject.templateName] = dataObject.templateText
     },
-    setConfig (state, config) {
+    setConfig(state, config) {
       state.configuration = config
     }
   }
+
 })
+

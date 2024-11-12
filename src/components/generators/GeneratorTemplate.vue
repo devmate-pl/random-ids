@@ -25,7 +25,7 @@
             </v-row>
             <v-row>
               <v-col cols="12" @click="clipboardCopy(generatedValue)">
-                <v-alert type="success" class="mb-0">
+                <v-alert type="success" class="mb-0 generated-value">
                   {{ generatedValue }}
                 </v-alert>
               </v-col>
@@ -54,7 +54,8 @@ export default {
     generateNextValue: {
       type: Function,
       required: true
-    }
+    },
+
   },
 
   data: () => ({
@@ -78,13 +79,13 @@ export default {
     },
     nextValue () {
       this.generatedValue = this.generateNextValue()
-      EventBus.$emit('generated')
+      EventBus.emit('generated')
     },
     currentValue () {
       return this.generatedValue
     },
     clipboardCopy (text) {
-      EventBus.$emit('clicked', text)
+      EventBus.emit('clicked', text)
     }
   }
 
@@ -92,6 +93,9 @@ export default {
 </script>
 
 <style>
+.generated-value {
+  font-family: "Roboto Mono", monospace;
+}
 .generator-card {
   min-height: 230px;
 }

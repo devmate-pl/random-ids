@@ -8,31 +8,23 @@ Framework: vue.js + vuetify
 
 ## Project setup
 ```
-yarn install
+pnpm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+pnpm dev
 ```
 
 ### Compiles and minifies for production
 ```
-yarn run build
+pnpm build
 ```
 
 ### Run your tests
 ```
 jest
 ```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 Uses:

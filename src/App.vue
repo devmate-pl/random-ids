@@ -1,72 +1,86 @@
 <template>
-  <v-app :style="{ background: $vuetify.theme.themes[theme].background }">
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
+  <v-app>
+
+    <v-app-bar>
+
+      <template v-slot:prepend>
         <v-img
           alt="Logo"
           title="Generator PESEL, dowód osobisty"
-          class="shrink mr-2"
-          contain
-          src="logo.png"
+          class="mr-2"
+          src="@/assets/logo.png"
           transition="scale-transition"
           width="40"
         />
-      </div>
-      <v-toolbar-title class="ml-10 hidden-sm-and-down">
-        <h1>Generator PESEL, nr dowodu osobistego, ...</h1>
-      </v-toolbar-title>
+      </template>
 
-      <v-col style="text-align: end">
+      <v-app-bar-title class="ml-10 hidden-sm-and-down">Generator PESEL, nr dowodu osobistego, ...</v-app-bar-title>
+
+      <template v-slot:append>
         <v-btn
-          large
           rounded
           outlined
-          color="accent"
-          title="Generuj wszystkie"
+          title="Generuj wartości"
           @click="refreshAll"
         >
           <v-img
-            alt="Generuj wszystkie"
+            alt="Generuj wartości"
             class="shrink mr-2"
-            src="logo.png"
+            src="@/assets/logo.png"
             width="30"
           />
           Generuj wszystkie
         </v-btn>
-      </v-col>
-      <v-icon class="mr-2">
-        mdi-theme-light-dark
-      </v-icon>
-      <v-switch
-        v-model="$vuetify.theme.dark"
-        hide-details
-      />
-    </v-app-bar>
 
+        <v-icon class="mr-2">
+          mdi-theme-light-dark
+        </v-icon>
+
+        <v-switch
+          @click="toggleTheme"
+          hide-details
+          title="Przełącz motyw jasny/ciemny"
+        />
+      </template>
+
+    </v-app-bar>
     <v-main>
-      <Dashboard ref="dashboard" />
+      <Dashboard ref="dashboardRef"/>
     </v-main>
+
   </v-app>
 </template>
 
-<script>
-import Dashboard from './components/Dashboard'
+<script setup>
 
-export default {
-  name: 'App',
+import {useTheme} from 'vuetify'
+import Dashboard from './components/Dashboard.vue'
+import {ref} from "vue";
 
-  components: {
-    Dashboard
-  },
-  computed: {
-    theme () {
-      return this.$vuetify.theme.dark ? 'dark' : 'light'
-    }
-  },
-  methods: {
-    refreshAll () {
-      this.$refs.dashboard.refreshAll()
-    }
+const theme = useTheme()
+const dashboardRef = ref();
+
+
+function toggleTheme() {
+ theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+}
+
+function refreshAll() {
+ dashboardRef.value.refreshAll()
+}
+
+</script>
+
+<style scoped>
+/* zmiana domyślnych ustawień, żeby wykorzystywać więcej szerokości ekranu */
+@media (min-width: 1280px) {
+  .v-container {
+    max-width: 1800px;
   }
 }
-</script>
+@media (min-width: 1920px) {
+  .v-container {
+    max-width: 1800px;
+  }
+}
+</style>

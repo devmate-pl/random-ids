@@ -1,19 +1,24 @@
 <template>
   <v-row text-center wrap dense>
     <v-col cols="12" class="ml-auto">
-      <div style="text-align: center;">
-        Poprzednie wartości
-      </div>
-      <v-list dense nav class="overflow-y-auto list-width ml-auto" :style="listStyle">
-        <v-list-item-group color="primary">
-          <v-list-item v-for="(prev, i) in previousValues" :key="i">
-            <v-list-item-content>
-              <v-list-item-title class="list-item-content" :title="titleFor(prev)" @click="clicked(prev)">
-                {{ prev }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
+
+      <v-list nav class="" :style="listStyle" density="compact">
+        <v-list-subheader inset>POPRZEDNIE WARTOŚCI</v-list-subheader>
+
+        <v-list-item
+          v-for="(prev, i) in previousValues"
+          :key="prev + i"
+          :value="prev"
+          color="primary"
+        >
+          <v-list-item-title
+            v-text="prev"
+            class="list-item-content"
+            :title="titleFor(prev)"
+            @click="clicked(prev)"
+          />
+        </v-list-item>
+
       </v-list>
     </v-col>
   </v-row>
@@ -41,7 +46,7 @@ export default {
   },
   methods: {
     clicked (text) {
-      EventBus.$emit('clicked', text)
+      EventBus.emit('clicked', text)
     },
     titleFor (prev) {
       return '' + prev
@@ -55,7 +60,8 @@ export default {
     min-height: 30px;
 }
 .list-item-content {
- text-align: right;
+  font-family: "Roboto Mono", monospace;
+  text-align: right;
 }
 
 /* Nie dziala dobrze overflow na elementach listy - definiowanie szerokosci dla roznych rozmiarow ekranu */

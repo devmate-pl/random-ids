@@ -13,7 +13,7 @@
       </template>
 
       <template v-slot:currentSettings>
-        {{ currentBankName }} ({{ currentSettings.bankId }})
+        {{ currentBankName }}
       </template>
     </GeneratorTemplate>
     <!-- settings dialog -->
@@ -48,10 +48,14 @@
                   </template>
                 </v-radio>
               </v-radio-group>
-              <v-select v-model="editedSettings.bankId" :items="banks" :value="editedSettings.bankId">
-                <template v-slot:label>
-                  <div>Jakiego banku rachunek wygenerować?</div>
-                </template>
+              <v-select
+                v-model="editedSettings.bankId"
+                :items="banks"
+                :value="editedSettings.bankId"
+                item-value="value"
+                item-title="text"
+                label="Dla którego banku wygenerować?"
+              >
               </v-select>
             </v-col>
           </v-form>
@@ -59,7 +63,7 @@
 
         <v-card-actions>
           <v-spacer />
-          <v-btn :disabled="!valid" text color="green darken-1" @click="saveOptions">
+          <v-btn :disabled="!valid" color="green darken-1" @click="saveOptions">
             Ustaw
           </v-btn>
         </v-card-actions>
@@ -95,22 +99,22 @@ export default {
       bankId: null
     },
     banks: [
-      { text: 'Alior Bank', value: 2490 },
-      { text: 'Bank Millennium', value: 1160 },
-      { text: 'BNP Paribas Bank Polska SA', value: 1750 },
-      { text: 'BPH', value: 1060 },
-      { text: 'Credit Agricole Bank Polska', value: 1940 },
-      { text: 'Idea Bank', value: 1950 },
-      { text: 'ING', value: 1050 },
-      { text: 'mBank', value: 1140 },
-      { text: 'Narodowy Bank Polski', value: 1010 },
-      { text: 'Nest Bank', value: 1870 },
-      { text: 'Nest Bank 2', value: 2530 },
-      { text: 'Pekao', value: 1240 },
-      { text: 'PKO BP', value: 1020 },
-      { text: 'Santander', value: 1090 },
-      { text: 'Societe Generale', value: 1840 },
-      { text: 'T-mobile Usługi Bankowe', value: 24901044 }
+      { text: 'Alior Bank (2490)', value: 2490 },
+      { text: 'Bank Millennium (1160)', value: 1160 },
+      { text: 'BNP Paribas Bank Polska SA (1750)', value: 1750 },
+      { text: 'BPH (1060)', value: 1060 },
+      { text: 'Credit Agricole Bank Polska (1940)', value: 1940 },
+      { text: 'Idea Bank (1950)', value: 1950 },
+      { text: 'ING (1050)', value: 1050 },
+      { text: 'mBank (1140)', value: 1140 },
+      { text: 'Narodowy Bank Polski (1010)', value: 1010 },
+      { text: 'Nest Bank (1870)', value: 1870 },
+      { text: 'Nest Bank 2 (2530)', value: 2530 },
+      { text: 'Pekao (1240)', value: 1240 },
+      { text: 'PKO BP (1020)', value: 1020 },
+      { text: 'Santander (1090)', value: 1090 },
+      { text: 'Societe Generale (1840)', value: 1840 },
+      { text: 'T-mobile Usługi Bankowe (24901044)', value: 24901044 }
     ]
   }),
 
