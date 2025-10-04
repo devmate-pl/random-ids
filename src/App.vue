@@ -14,34 +14,15 @@
         />
       </template>
 
-      <v-app-bar-title class="ml-10 hidden-sm-and-down"><h1>Wygeneruj dane testowe: PESEL, NIP, Regon, Dowody Osobiste</h1></v-app-bar-title>
+      <v-app-bar-title class="ml-10"><h1>Wygeneruj dane testowe: PESEL, NIP, Regon, Dowody Osobiste</h1></v-app-bar-title>
 
-      <template v-slot:append>
-        <v-btn
-          rounded
-          outlined
-          title="Generuj wartości"
-          @click="refreshAll"
-        >
-          <v-img
-            alt="Generuj wartości"
-            class="shrink mr-2"
-            src="@/assets/logo.png"
-            width="30"
-          />
-          Generuj wszystkie
-        </v-btn>
-
-        <v-icon class="mr-2" :icon="mdiThemeLightDark"/>
-
-        <v-switch
-          class="switch"
-          @click="toggleTheme"
-          hide-details
-          title="Przełącz motyw jasny/ciemny"
-        />
-      </template>
-
+      <v-icon class="mr-2 switch-icon" :icon="mdiThemeLightDark"/>
+      <v-switch
+        class="switch"
+        @click="toggleTheme"
+        hide-details
+        title="Przełącz motyw jasny/ciemny"
+      />
     </v-app-bar>
     <v-main>
       <Dashboard ref="dashboardRef"/>
@@ -75,11 +56,15 @@ function refreshAll() {
 .logo {
   margin-left: 10px;
 }
+.switch-icon {
+  margin-left: 12px;
+}
 .switch {
   margin-right: 10px;
 }
 h1 {
-  font-size: 1.2rem !important;
+  font-size: 1.2rem;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 /* zmiana domyślnych ustawień, żeby wykorzystywać więcej szerokości ekranu */
