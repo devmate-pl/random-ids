@@ -5,13 +5,11 @@
  */
 
 // Styles
-import '@mdi/font/css/materialdesignicons.css'
+import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
 import 'vuetify/styles'
 
 // Composables
 import {createVuetify} from 'vuetify'
-import {components} from "vuetify/dist/vuetify";
-import * as labsComponents from 'vuetify/labs/components'
 import { pl } from 'vuetify/locale'
 
 const randomIdsDark = {
@@ -35,12 +33,15 @@ export default createVuetify({
     //   randomIdsDark,
     // },
   },
-  components: {
-    ...components,
-    ...labsComponents
-  },
   locale: {
     locale: 'pl',
     messages: { pl }
+  },
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    },
   },
 })

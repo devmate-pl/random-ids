@@ -2,10 +2,10 @@
   <v-row text-center wrap dense>
     <v-col cols="12" class="ml-auto">
 
-      <v-list nav class="" :style="listStyle" density="compact">
+      <v-list nav class="previous-values" :style="listStyle" density="compact">
         <v-list-subheader inset>POPRZEDNIE WARTOŚCI</v-list-subheader>
 
-        <v-list-item
+        <v-list-item density="compact"
           v-for="(prev, i) in previousValues"
           :key="prev + i"
           :value="prev"
@@ -56,9 +56,11 @@ export default {
 </script>
 
 <style>
-.v-list-item--dense, .v-list--dense .v-list-item {
-    min-height: 30px;
+
+.previous-values .v-list-item--density-compact.v-list-item--one-line {
+  min-height: 25px;
 }
+
 .list-item-content {
   font-family: "Roboto Mono", monospace;
   text-align: right;
